@@ -83,8 +83,8 @@ const config = {
     themes: [
       {
         christmas: {
-          "primary": "#D62828",          // Christmas Red
-          "secondary": "#2A9134",        // Christmas Green
+          "primary": "#2A9134",          // Christmas Green
+          "secondary": "#D62828",        // Christmas Red
           "accent": "#FFB703",          // Gold
           "neutral": "#2B2D42",         // Dark Blue-Gray
           "base-100": "#FFFFFF",        // White

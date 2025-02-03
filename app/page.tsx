@@ -1,5 +1,19 @@
 import Link from 'next/link'
 
+const HOW_IT_WORKS_STEPS = [
+  { step: "1️⃣", title: "Create a Wishlist", desc: "Parents generate a unique wishlist link." },
+  { step: "2️⃣", title: "Share with Your Child", desc: "Send them their personal wishlist page." },
+  { step: "3️⃣", title: "Let the Magic Happen", desc: "Kids add their dream gifts via text or links." },
+  { step: "4️⃣", title: "Track in Your Dashboard", desc: "Easily view and manage all wishlists in one place." },
+];
+
+const FEATURES = [
+  { title: "Easy to Use", desc: "No more scattered notes or forgotten wishes!" },
+  { title: "Customizable & Private", desc: "Every wishlist is unique and secure." },
+  { title: "Real-Time Updates", desc: "See your child's wishes as they're added." },
+  { title: "Perfect for Family Sharing", desc: "Grandparents & relatives can see what's on their list!" },
+];
+
 export default function HomePage() {
   return (
     <main className="min-h-screen bg-base-200">
@@ -30,12 +44,7 @@ export default function HomePage() {
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12">🎅 How It Works</h2>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            {[
-              { step: "1️⃣", title: "Create a Wishlist", desc: "Parents generate a unique wishlist link." },
-              { step: "2️⃣", title: "Share with Your Child", desc: "Send them their personal wishlist page." },
-              { step: "3️⃣", title: "Let the Magic Happen", desc: "Kids add their dream gifts via text or links." },
-              { step: "4️⃣", title: "Track in Your Dashboard", desc: "Easily view and manage all wishlists in one place." },
-            ].map((item, index) => (
+            {HOW_IT_WORKS_STEPS.map((item, index) => (
               <div key={index} className="card bg-base-100 shadow-xl">
                 <div className="card-body items-center text-center">
                   <h3 className="text-2xl font-bold mb-2">{item.step}</h3>
@@ -53,12 +62,7 @@ export default function HomePage() {
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12">✨ Why Parents Love North Pole Express</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
-            {[
-              { title: "Easy to Use", desc: "No more scattered notes or forgotten wishes!" },
-              { title: "Customizable & Private", desc: "Every wishlist is unique and secure." },
-              { title: "Real-Time Updates", desc: "See your child's wishes as they're added." },
-              { title: "Perfect for Family Sharing", desc: "Grandparents & relatives can see what's on their list!" },
-            ].map((feature, index) => (
+            {FEATURES.map((feature, index) => (
               <div key={index} className="card bg-base-200">
                 <div className="card-body">
                   <h3 className="card-title">✔ {feature.title}</h3>
