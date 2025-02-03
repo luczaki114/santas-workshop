@@ -74,7 +74,35 @@ const config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    require("@tailwindcss/typography"),
+    require("daisyui")
+  ],
+  daisyui: {
+    themes: [
+      {
+        christmas: {
+          "primary": "#D62828",          // Christmas Red
+          "secondary": "#2A9134",        // Christmas Green
+          "accent": "#FFB703",          // Gold
+          "neutral": "#2B2D42",         // Dark Blue-Gray
+          "base-100": "#FFFFFF",        // White
+          "base-200": "#F8F9FA",        // Light Gray
+          "base-300": "#E9ECEF",        // Lighter Gray
+          "info": "#0284C7",           // Blue
+          "success": "#2A9134",        // Green
+          "warning": "#FFB703",        // Gold
+          "error": "#D62828",          // Red
+        },
+      },
+      "winter",  // Adding winter theme as fallback
+    ],
+    darkTheme: "winter",
+    base: true,
+    styled: true,
+    utils: true,
+  },
 } satisfies Config;
 
 export default config;
