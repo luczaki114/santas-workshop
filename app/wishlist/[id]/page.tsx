@@ -3,13 +3,14 @@ import { getWishlist } from "@/app/api/wishlist";
 import { Plus } from "lucide-react";
 
 interface PageProps {
-  params: {
+  params: Promise<{
     id: string;
-  }
+  }>
 }
 
 export default async function WishlistPage({ params }: PageProps) {
-  const wishlist = await getWishlist(params.id);
+  const { id } = await params;
+  const wishlist = await getWishlist(id);
 
   if (!wishlist) {
     notFound();
