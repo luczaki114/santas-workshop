@@ -2,6 +2,12 @@ import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import { getWishlists } from "../api/wishlist";
 import { WishlistDashboard } from "./components/WishlistDashboard";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Dashboard | North Pole Express",
+  description: "Manage your wishlists and track gift ideas for your loved ones",
+};
 
 export default async function DashboardPage() {
   const supabase = await createClient();
