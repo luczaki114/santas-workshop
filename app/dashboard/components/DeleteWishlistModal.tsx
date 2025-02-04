@@ -28,7 +28,7 @@ export function DeleteWishlistModal({
         </button>
         <h3 className="font-bold text-lg mb-4">Delete Wishlist</h3>
         <p className="py-4">
-          Are you sure you want to delete "{wishlistName}"? This action cannot be undone.
+          Are you sure you want to delete &quot;{wishlistName}&quot;? This action cannot be undone.
         </p>
         <div className="modal-action">
           <button onClick={onClose} className="btn">

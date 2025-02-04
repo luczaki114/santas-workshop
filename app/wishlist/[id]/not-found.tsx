@@ -6,7 +6,7 @@ export default function WishlistNotFound() {
       <div className="flex flex-col items-center gap-6">
         <h1 className="text-3xl font-bold">Wishlist Not Found</h1>
         <p className="text-base-content/70">
-          The wishlist you're looking for doesn't exist or has been deleted.
+          The wishlist you&apos;re looking for doesn&apos;t exist or has been deleted.
         </p>
         <Link href="/dashboard" className="btn btn-primary">
           Return to Dashboard

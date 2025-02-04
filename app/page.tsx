@@ -25,12 +25,12 @@ export default function HomePage() {
             The Magic of Christmas, One Wish at a Time!
             </h1>
             <p className="py-6 text-lg">
-              A Simple & Fun Way to Collect Your Child's Christmas Wishes
+              A Simple & Fun Way to Collect Your Child&apos;s Christmas Wishes
             </p>
             <p className="mb-8 text-base-content/80">
               The holiday season is full of wonder, and with North Pole Express, you can make Christmas even more magical! 
               Create a personalized wishlist for your child with a single click and share a custom link where they can add their most wished-for gifts. 
-              No more guessing games—just holiday cheer, made simple!
+              No more guessing games&mdash;just holiday cheer, made simple!
             </p>
             <Link href="/dashboard" className="btn btn-primary btn-lg">
               Create Your Free Wishlist
@@ -83,6 +83,10 @@ export default function HomePage() {
           Create Your Free Wishlist
         </Link>
       </div>
+
+      <p className="text-sm">
+        Let&apos;s get started by creating your first wishlist.
+      </p>
     </main>
   )
 }
