@@ -1,5 +1,8 @@
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
+import { CreateWishlistModal } from "@/components/CreateWishlistModal";
+import { getWishlists } from "../api/wishlist";
+import { WishlistDashboard } from "./components/WishlistDashboard";
 
 export default async function DashboardPage() {
   const supabase = await createClient();
@@ -13,6 +16,8 @@ export default async function DashboardPage() {
   if (!user) {
     redirect("/sign-in");
   }
+
+  const wishlists = await getWishlists();
 
   return (
     <div className="flex-1 w-full flex flex-col gap-20 items-center">
@@ -28,21 +33,7 @@ export default async function DashboardPage() {
         </div>
 
         {/* Wishlists Section */}
-        <div className="card bg-base-100 shadow-xl">
-          <div className="card-body">
-            <h2 className="card-title">Your Wishlists</h2>
-            <div className="py-4">
-              <button className="btn btn-primary">
-                Create New Wishlist
-              </button>
-            </div>
-            
-            {/* Placeholder for wishlists */}
-            <div className="alert">
-              No wishlists created yet. Create your first wishlist to get started!
-            </div>
-          </div>
-        </div>
+        <WishlistDashboard initialWishlists={wishlists} />
 
         {/* Quick Actions */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
