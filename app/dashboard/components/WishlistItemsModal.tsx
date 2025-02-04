@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { X, Trash2 } from "lucide-react";
 import { Wishlist } from "./WishlistDashboard";
 import { getWishlistItems, deleteWishlistItem } from "@/app/api/wishlist";
@@ -21,18 +21,18 @@ export function WishlistItemsModal({ wishlist, onClose }: WishlistItemsModalProp
   const [items, setItems] = useState<WishlistItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    loadItems();
-  }, [wishlist]);
-
-  async function loadItems() {
+  const loadItems = useCallback(async () => {
     if (wishlist) {
       setIsLoading(true);
       const wishlistItems = await getWishlistItems(wishlist.id);
       setItems(wishlistItems);
       setIsLoading(false);
     }
-  }
+  }, [wishlist]);
+
+  useEffect(() => {
+    loadItems();
+  }, [loadItems]);
 
   async function handleDeleteItem(itemId: string) {
     const result = await deleteWishlistItem(itemId);
