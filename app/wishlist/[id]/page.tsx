@@ -2,13 +2,13 @@ import { notFound } from "next/navigation";
 import { getWishlist } from "@/app/api/wishlist";
 import { Plus } from "lucide-react";
 
-interface WishlistPageProps {
+interface pageProps {
   params: {
     id: string;
   }
 }
 
-export default async function WishlistPage({ params }: WishlistPageProps) {
+export default async function WishlistPage({ params }: pageProps) {
   const wishlist = await getWishlist(params.id);
 
   if (!wishlist) {

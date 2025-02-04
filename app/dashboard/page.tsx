@@ -1,6 +1,6 @@
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
-import { CreateWishlistModal } from "@/components/CreateWishlistModal";
+import { CreateWishlistModal } from "./components/CreateWishlistModal";
 import { getWishlists } from "../api/wishlist";
 import { WishlistDashboard } from "./components/WishlistDashboard";
 
