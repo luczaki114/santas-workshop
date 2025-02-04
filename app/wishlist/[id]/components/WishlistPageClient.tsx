@@ -4,7 +4,6 @@ import { notFound } from "next/navigation";
 import { getWishlist } from "@/app/api/wishlist";
 import { Plus } from "lucide-react";
 import { useState, useEffect, useCallback } from "react";
-import { useParams } from "next/navigation";
 import { AddItemModal } from "./AddItemModal";
 import { Wishlist } from "@/types/wishlist";
 
