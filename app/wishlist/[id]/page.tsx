@@ -1,16 +1,39 @@
+"use client";
+
 import { notFound } from "next/navigation";
 import { getWishlist } from "@/app/api/wishlist";
 import { Plus } from "lucide-react";
+import { useState, useEffect } from "react";
+import { useParams } from "next/navigation";
+import { AddItemModal } from "./components/AddItemModal";
+import { Wishlist } from "@/types/wishlist";
 
-interface PageProps {
-  params: Promise<{
-    id: string;
-  }>
-}
+export default function WishlistPage() {
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [wishlist, setWishlist] = useState<Wishlist | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const params = useParams();
+  const id = params.id as string;
 
-export default async function WishlistPage({ params }: PageProps) {
-  const { id } = await params;
-  const wishlist = await getWishlist(id);
+  async function loadWishlist() {
+    setIsLoading(true);
+    const data = await getWishlist(id);
+    setIsLoading(false);
+    
+    if (!data) {
+      notFound();
+    }
+    
+    setWishlist(data);
+  }
+
+  useEffect(() => {
+    loadWishlist();
+  }, [id]);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   if (!wishlist) {
     notFound();
@@ -54,12 +77,24 @@ export default async function WishlistPage({ params }: PageProps) {
 
         {/* Add Item Button */}
         <div className="flex justify-center py-8">
-          <button className="btn btn-primary gap-2">
+          <button 
+            className="btn btn-primary gap-2"
+            onClick={() => setIsAddModalOpen(true)}
+          >
             <Plus className="h-5 w-5" />
             Add Item
           </button>
         </div>
       </div>
+
+      <AddItemModal 
+        isOpen={isAddModalOpen}
+        onClose={() => setIsAddModalOpen(false)}
+        onSuccess={() => {
+          setIsAddModalOpen(false);
+          loadWishlist();
+        }}
+      />
     </div>
   );
 } 

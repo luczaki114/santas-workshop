@@ -3,6 +3,7 @@
 import { createClient } from "@/utils/supabase/server";
 import { revalidatePath } from "next/cache";
 import { getCurrentUser } from "./user";
+import type { Wishlist, WishlistItem } from "@/types/wishlist";
 
 export async function createWishlist(formData: FormData) {
   const supabase = await createClient();
@@ -155,4 +156,33 @@ export async function getWishlist(id: string) {
     ...wishlist,
     item_count: wishlist.item_count?.[0]?.count || 0
   };
+}
+
+export async function createWishlistItem(formData: FormData) {
+  const supabase = await createClient();
+  const wishlistId = formData.get("wishlist_id")?.toString();
+  const productName = formData.get("product_name")?.toString();
+  const productLink = formData.get("product_link")?.toString();
+
+  if (!wishlistId || !productName) {
+    return { error: "Required fields missing" };
+  }
+
+  const { data, error } = await supabase
+    .from("wishlist_items")
+    .insert([{
+      wishlist_id: wishlistId,
+      product_name: productName,
+      product_link: productLink,
+      created_at: new Date().toISOString()
+    }])
+    .select()
+    .single();
+
+  if (error) {
+    return { error: error.message };
+  }
+
+  revalidatePath(`/wishlist/${wishlistId}`);
+  return { data };
 } 
