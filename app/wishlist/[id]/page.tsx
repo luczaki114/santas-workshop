@@ -3,7 +3,7 @@
 import { notFound } from "next/navigation";
 import { getWishlist } from "@/app/api/wishlist";
 import { Plus } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useParams } from "next/navigation";
 import { AddItemModal } from "./components/AddItemModal";
 import { Wishlist } from "@/types/wishlist";
@@ -15,7 +15,7 @@ export default function WishlistPage() {
   const params = useParams();
   const id = params.id as string;
 
-  async function loadWishlist() {
+  const loadWishlist = useCallback(async () => {
     setIsLoading(true);
     const data = await getWishlist(id);
     setIsLoading(false);
@@ -25,11 +25,11 @@ export default function WishlistPage() {
     }
     
     setWishlist(data);
-  }
+  }, [id]);
 
   useEffect(() => {
     loadWishlist();
-  }, [id]);
+  }, [loadWishlist]);
 
   if (isLoading) {
     return <div>Loading...</div>;

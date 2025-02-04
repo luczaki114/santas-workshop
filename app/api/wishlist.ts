@@ -3,7 +3,6 @@
 import { createClient } from "@/utils/supabase/server";
 import { revalidatePath } from "next/cache";
 import { getCurrentUser } from "./user";
-import type { Wishlist, WishlistItem } from "@/types/wishlist";
 
 export async function createWishlist(formData: FormData) {
   const supabase = await createClient();
