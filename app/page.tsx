@@ -38,13 +38,13 @@ export default function HomePage() {
       <div className="hero min-h-[60vh]">
         <div className="hero-content text-center">
           <div className="max-w-3xl">
-            <h1 className="text-5xl font-bold text-primary">
+            <h1 className="text-5xl font-bold">
               The Magic of Christmas, One Wish at a Time!
             </h1>
             <p className="py-6 text-xl">
               A Simple & Fun Way to Collect Your Child&apos;s Christmas Wishes
             </p>
-            <p className="text-base-content/70">
+            <p className="text-secondary">
               The holiday season is full of wonder, and with North Pole Express, you can make Christmas even more magical! 
               Create a personalized wishlist for your child with a single click and share a custom link where they can add their most wished-for gifts. 
               No more guessing games&mdash;just holiday cheer, made simple!
