@@ -27,7 +27,13 @@ const ThemeSwitcher = () => {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
       <Button variant="ghost" size={"sm"}>
-          {theme === "cupcake" ? (
+          {theme === "forest" ? (
+            <TreePine
+              key="forest"
+              size={ICON_SIZE}
+              className={"text-muted-foreground"}
+            />
+          ) : theme === "light" ? (
             <Sun
               key="light"
               size={ICON_SIZE}
@@ -36,12 +42,6 @@ const ThemeSwitcher = () => {
           ) : theme === "dark" ? (
             <Moon
               key="dark"
-              size={ICON_SIZE}
-              className={"text-muted-foreground"}
-            />
-          ) : theme === "forest" ? (
-            <TreePine
-              key="forest"
               size={ICON_SIZE}
               className={"text-muted-foreground"}
             />
@@ -56,14 +56,14 @@ const ThemeSwitcher = () => {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="bg-base-200">
         <DropdownMenuRadioGroup value={theme} onValueChange={setTheme}>
-          <DropdownMenuRadioItem className="flex gap-2" value="cupcake">
+          <DropdownMenuRadioItem className="flex gap-2" value="forest">
+            <TreePine size={ICON_SIZE} className="text-muted-foreground" /> <span>Forest</span>
+          </DropdownMenuRadioItem>
+          <DropdownMenuRadioItem className="flex gap-2" value="light">
             <Sun size={ICON_SIZE} className="text-muted-foreground" /> <span>Light</span>
           </DropdownMenuRadioItem>
           <DropdownMenuRadioItem className="flex gap-2" value="dark">
             <Moon size={ICON_SIZE} className="text-muted-foreground" /> <span>Dark</span>
-          </DropdownMenuRadioItem>
-          <DropdownMenuRadioItem className="flex gap-2" value="forest">
-            <TreePine size={ICON_SIZE} className="text-muted-foreground" /> <span>forest</span>
           </DropdownMenuRadioItem>
           <DropdownMenuRadioItem className="flex gap-2" value="system">
             <Laptop size={ICON_SIZE} className="text-muted-foreground" /> <span>System</span>
