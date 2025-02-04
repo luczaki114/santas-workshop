@@ -4,7 +4,7 @@ import { useState } from "react";
 import { CreateWishlistModal } from "./CreateWishlistModal";
 import { DeleteWishlistModal } from "./DeleteWishlistModal";
 import { getWishlists, deleteWishlist } from "@/app/api/wishlist";
-import { Search, Trash2 } from "lucide-react";
+import { Search, Trash2, ExternalLink } from "lucide-react";
 import { WishlistItemsModal } from "./WishlistItemsModal";
 
 export interface Wishlist {
@@ -78,6 +78,15 @@ export function WishlistDashboard({ initialWishlists }: WishlistDashboardProps) 
                       >
                         <Search className="h-4 w-4" />
                       </button>
+                      <a
+                        href={`/wishlist/${wishlist.id}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn btn-ghost btn-sm"
+                        title="Open in New Tab"
+                      >
+                        <ExternalLink className="h-4 w-4" />
+                      </a>
                       <button 
                         className="btn btn-error btn-sm"
                         title="Delete Wishlist"

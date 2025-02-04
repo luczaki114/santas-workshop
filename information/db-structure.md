@@ -8,6 +8,7 @@ public
     ├── id (uuid, primary key)
     ├── wishlist_id (uuid, foreign key references wishlists(id))
     ├── product_name (varchar)
+    ├── product_link (varchar)
     ├── created_at (timestamp with time zone)
 
 auth

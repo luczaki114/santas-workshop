@@ -125,4 +125,34 @@ export async function deleteWishlist(wishlistId: string) {
   }
 
   return { success: true };
+}
+
+export async function getWishlist(id: string) {
+  const supabase = await createClient();
+  
+  const { data: wishlist, error } = await supabase
+    .from('wishlists')
+    .select(`
+      id,
+      name,
+      created_at,
+      created_by,
+      item_count:wishlist_items(count),
+      wishlist_items (
+        id,
+        product_name,
+        created_at
+      )
+    `)
+    .eq('id', id)
+    .single();
+
+  if (error || !wishlist) {
+    return null;
+  }
+
+  return {
+    ...wishlist,
+    item_count: wishlist.item_count?.[0]?.count || 0
+  };
 } 
