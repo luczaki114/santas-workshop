@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { CreateWishlistModal } from "./CreateWishlistModal";
-import { getWishlists } from "@/app/api/wishlist";
+import { DeleteWishlistModal } from "./DeleteWishlistModal";
+import { getWishlists, deleteWishlist } from "@/app/api/wishlist";
 import { Search, Trash2 } from "lucide-react";
 import { WishlistItemsModal } from "./WishlistItemsModal";
 
@@ -21,11 +22,22 @@ interface WishlistDashboardProps {
 export function WishlistDashboard({ initialWishlists }: WishlistDashboardProps) {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [selectedWishlist, setSelectedWishlist] = useState<Wishlist | null>(null);
+  const [wishlistToDelete, setWishlistToDelete] = useState<Wishlist | null>(null);
   const [wishlists, setWishlists] = useState(initialWishlists);
 
   const refreshWishlists = async () => {
     const updatedWishlists = await getWishlists();
     setWishlists(updatedWishlists);
+  };
+
+  const handleDeleteWishlist = async () => {
+    if (!wishlistToDelete) return;
+
+    const result = await deleteWishlist(wishlistToDelete.id);
+    if (!result.error) {
+      await refreshWishlists();
+    }
+    setWishlistToDelete(null);
   };
 
   return (
@@ -69,6 +81,7 @@ export function WishlistDashboard({ initialWishlists }: WishlistDashboardProps) 
                       <button 
                         className="btn btn-error btn-sm"
                         title="Delete Wishlist"
+                        onClick={() => setWishlistToDelete(wishlist)}
                       >
                         <Trash2 className="h-4 w-4" />
                       </button>
@@ -92,6 +105,13 @@ export function WishlistDashboard({ initialWishlists }: WishlistDashboardProps) 
         <WishlistItemsModal 
           wishlist={selectedWishlist}
           onClose={() => setSelectedWishlist(null)}
+        />
+
+        <DeleteWishlistModal 
+          isOpen={wishlistToDelete !== null}
+          wishlistName={wishlistToDelete?.name || ''}
+          onConfirm={handleDeleteWishlist}
+          onClose={() => setWishlistToDelete(null)}
         />
       </div>
     </div>

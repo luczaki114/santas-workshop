@@ -99,4 +99,30 @@ export async function deleteWishlistItem(itemId: string) {
   }
 
   return { success: true };
+}
+
+export async function deleteWishlist(wishlistId: string) {
+  const supabase = await createClient();
+  
+  // First delete all items in the wishlist
+  const { error: itemsError } = await supabase
+    .from('wishlist_items')
+    .delete()
+    .eq('wishlist_id', wishlistId);
+
+  if (itemsError) {
+    return { error: itemsError.message };
+  }
+
+  // Then delete the wishlist itself
+  const { error: wishlistError } = await supabase
+    .from('wishlists')
+    .delete()
+    .eq('id', wishlistId);
+
+  if (wishlistError) {
+    return { error: wishlistError.message };
+  }
+
+  return { success: true };
 } 
