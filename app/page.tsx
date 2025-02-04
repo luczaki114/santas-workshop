@@ -84,9 +84,6 @@ export default function HomePage() {
         </Link>
       </div>
 
-      <p className="text-sm">
-        Let&apos;s get started by creating your first wishlist.
-      </p>
     </main>
   )
 }

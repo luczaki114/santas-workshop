@@ -40,32 +40,6 @@ export default async function DashboardPage() {
         {/* Wishlists Section */}
         <WishlistDashboard initialWishlists={wishlists} />
 
-        {/* Quick Actions */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="card bg-base-100 shadow-xl">
-            <div className="card-body">
-              <h3 className="card-title">Share Wishlist</h3>
-              <p>Share your wishlist with family and friends</p>
-              <div className="card-actions justify-end">
-                <button className="btn btn-secondary" disabled>
-                  Share Link
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div className="card bg-base-100 shadow-xl">
-            <div className="card-body">
-              <h3 className="card-title">Manage Settings</h3>
-              <p>Update your account preferences</p>
-              <div className="card-actions justify-end">
-                <button className="btn btn-secondary">
-                  Settings
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );
