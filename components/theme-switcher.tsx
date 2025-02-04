@@ -8,30 +8,26 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Laptop, Moon, Sun } from "lucide-react";
+import { Laptop, Moon, Sun, TreePine } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
 const ThemeSwitcher = () => {
-  const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  const ICON_SIZE = 16;
 
-  // useEffect only runs on the client, so now we can safely show the UI
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  if (!mounted) {
-    return null;
-  }
-
-  const ICON_SIZE = 16;
+  if (!mounted) return null;
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size={"sm"}>
-          {theme === "light" ? (
+      <Button variant="ghost" size={"sm"}>
+          {theme === "cupcake" ? (
             <Sun
               key="light"
               size={ICON_SIZE}
@@ -40,6 +36,12 @@ const ThemeSwitcher = () => {
           ) : theme === "dark" ? (
             <Moon
               key="dark"
+              size={ICON_SIZE}
+              className={"text-muted-foreground"}
+            />
+          ) : theme === "forest" ? (
+            <TreePine
+              key="forest"
               size={ICON_SIZE}
               className={"text-muted-foreground"}
             />
@@ -52,22 +54,19 @@ const ThemeSwitcher = () => {
           )}
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-content" align="start">
-        <DropdownMenuRadioGroup
-          value={theme}
-          onValueChange={(e) => setTheme(e)}
-        >
-          <DropdownMenuRadioItem className="flex gap-2" value="light">
-            <Sun size={ICON_SIZE} className="text-muted-foreground" />{" "}
-            <span>Light</span>
+      <DropdownMenuContent align="end" className="bg-base-200">
+        <DropdownMenuRadioGroup value={theme} onValueChange={setTheme}>
+          <DropdownMenuRadioItem className="flex gap-2" value="cupcake">
+            <Sun size={ICON_SIZE} className="text-muted-foreground" /> <span>Light</span>
           </DropdownMenuRadioItem>
           <DropdownMenuRadioItem className="flex gap-2" value="dark">
-            <Moon size={ICON_SIZE} className="text-muted-foreground" />{" "}
-            <span>Dark</span>
+            <Moon size={ICON_SIZE} className="text-muted-foreground" /> <span>Dark</span>
+          </DropdownMenuRadioItem>
+          <DropdownMenuRadioItem className="flex gap-2" value="forest">
+            <TreePine size={ICON_SIZE} className="text-muted-foreground" /> <span>forest</span>
           </DropdownMenuRadioItem>
           <DropdownMenuRadioItem className="flex gap-2" value="system">
-            <Laptop size={ICON_SIZE} className="text-muted-foreground" />{" "}
-            <span>System</span>
+            <Laptop size={ICON_SIZE} className="text-muted-foreground" /> <span>System</span>
           </DropdownMenuRadioItem>
         </DropdownMenuRadioGroup>
       </DropdownMenuContent>

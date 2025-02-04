@@ -16,9 +16,9 @@ const FEATURES = [
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-base-200">
+    <main className="min-h-screen">
       {/* Hero Section */}
-      <div className="hero min-h-[60vh] bg-base-100">
+      <div className="hero min-h-[60vh] bg-base-100 p-4">
         <div className="hero-content text-center">
           <div className="max-w-3xl">
             <h1 className="text-5xl font-bold text-primary">
@@ -40,7 +40,7 @@ export default function HomePage() {
       </div>
 
       {/* How It Works Section */}
-      <div className="py-16 bg-base-200">
+      <div className="py-16 bg-base-200 rounded-box">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12">🎅 How It Works</h2>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -58,10 +58,10 @@ export default function HomePage() {
       </div>
 
       {/* Features Section */}
-      <div className="py-16 bg-base-100">
-        <div className="container mx-auto px-4">
+      <div className="p-16 bg-base-100">
+        <div className="container px-4">
           <h2 className="text-3xl font-bold text-center mb-12">✨ Why Parents Love North Pole Express</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {FEATURES.map((feature, index) => (
               <div key={index} className="card bg-base-200">
                 <div className="card-body">
@@ -75,7 +75,7 @@ export default function HomePage() {
       </div>
 
       {/* CTA Section */}
-      <div className="py-16 bg-base-200 text-center">
+      <div className="p-16 bg-base-200 text-center rounded-box">
         <h2 className="text-3xl font-bold mb-8">
           Start Your Wishlist Now & Make This Christmas Unforgettable!
         </h2>
